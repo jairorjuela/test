@@ -12,6 +12,11 @@ gem 'rspotify'
 # Handle secrets per environment
 gem "figaro"
 
+# Dry-Gems·
+gem 'dry-auto_inject'
+gem 'dry-validation','~> 0.12.2'
+gem 'dry-transaction'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
