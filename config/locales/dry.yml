@@ -1,0 +1,6 @@
+en:
+  errors:
+    rules:
+      file:
+        filled?: "La ruta del archivo es obligatorio"
+        invalid_file: "Verifique el archivo o la ruta de este"

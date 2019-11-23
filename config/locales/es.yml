@@ -30,6 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 es:
+  errors:
+    rules:
+      user:
+        filled?: "name cannot be blank"
+        invalid_file_type: "blah"
   activerecord:
     errors:
       models:
