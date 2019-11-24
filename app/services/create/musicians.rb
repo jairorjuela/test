@@ -1,6 +1,6 @@
 require "dry/transaction"
 
-class CreateArtists::Execute
+class Create::Musicians
   include Dry::Transaction
 
   step :validate_input
@@ -42,22 +42,10 @@ class CreateArtists::Execute
   end
 
   def create_artist(input)
-    artists_names = input[:file].symbolize_keys[:artists]
+    artists_names = input[:file].symbolize_keys[:artists].compact
 
     artists_names.each do |artist_name|
-      artist = RSpotify::Artist.search(artist_name.to_s)
-
-      if artist.present?
-        Artist.create(
-          name: artist[0].name,
-          image: artist[0].images[0]["url"],
-          genres: artist[0].genres,
-          popularity: artist[0].popularity,
-          spotify_url: artist[0].href,
-          spotify_id: artist[0].id
-        )
-      end
-
+      Create::Musician.new.(artist_name: artist_name)
     end
 
     Success input

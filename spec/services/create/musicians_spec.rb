@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CreateArtists::Execute do
+RSpec.describe Create::Musicians do
   describe "#call" do
     let(:file_name) { "spec/fixtures/create_artists/success.yml" }
     let(:client)    { ENV["CLIENT_ID"] }
@@ -11,10 +11,19 @@ RSpec.describe CreateArtists::Execute do
     context "When the input is valid" do
       it "Should return a success response" do
         expect(response.success?).to be_truthy
-        expect(Artist.count).to eq(3)
+        expect(Artist.count).to eq(21)
 
         names = Artist.all.map(&:name)
-        expected_names = ['311', 'Metallica', 'Nirvana']
+        expected_names = [
+          "Metallica", "Nirvana", "Diomedes Diaz",
+          "AC/DC", "311", "Calle 13", "BTS",
+          "El Último De La Fila", "Alci Acosta",
+          "Green Day", "Tormenta", "Chuck Berry",
+          "Joe Cuba Sextet", "Compay Segundo",
+          "Buena Vista Social Club", "Masacre",
+          "Pantera", "Rubén Blades", "Los Hermanos Zuleta",
+          "Carlos Vives", "Muse"
+        ]
 
         expect(names).to match_array(expected_names)
       end
@@ -86,7 +95,7 @@ RSpec.describe CreateArtists::Execute do
     end
 
     context "When the create_artist step fails" do
-      context "When the artist dont exist" do
+      context "When the artist does not exist" do
         it "Should return a failure response" do
           input[:file_name] = "spec/fixtures/create_artists/artist_does_not_exist.yml"
 
@@ -97,6 +106,24 @@ RSpec.describe CreateArtists::Execute do
           expected_names = ['Metallica']
 
           expect(names).to match_array(expected_names)
+        end
+      end
+
+      context "When the artist is nil" do
+        it "Should return a failure response" do
+          input[:file_name] = "spec/fixtures/create_artists/artist_is_nil.yml"
+
+          expect(response.success?).to be_truthy
+          expect(Artist.count).to eq(0)
+        end
+      end
+
+      context "When the artist does not exist in spotify" do
+        it "Should return a success response" do
+          input[:file_name] = "spec/fixtures/create_artists/artist_does_not_exist_in_spotify.yml"
+
+          expect(response.success?).to be_truthy
+          expect(Artist.count).to eq(0)
         end
       end
     end
