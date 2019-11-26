@@ -11,7 +11,6 @@ gem 'puma', '~> 3.11'
 gem 'rspotify'
 # Handle secrets per environment
 gem "figaro"
-
 # Dry-Gems·
 gem 'dry-auto_inject'
 gem 'dry-validation','~> 0.12.2'
@@ -38,7 +37,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  #gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
@@ -47,6 +46,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'pg'
 end
 
 group :development do
@@ -57,8 +57,8 @@ group :development do
 end
 
 group :production do
-  gem 'rails_12factor'
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
