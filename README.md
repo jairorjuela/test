@@ -7,4 +7,4 @@
 
 *For run RSPEC*
 
-- Run `g`
+- Run `bundle exec rspec spec`
