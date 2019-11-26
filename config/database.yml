@@ -2,19 +2,19 @@ development:
   adapter: postgresql
   encoding: unicode
   database: ayenda_development
-  pool: 20
+  pool: 5
   timeout: 5000
 
 test:
   adapter: postgresql
   encoding: unicode
   database: ayenda_test
-  pool: 20
+  pool: 5
   timeout: 5000
 
 production:
   adapter: postgresql
   encoding: unicode
   database: ayenda_test
-  pool: 20
+  pool: 5
   timeout: 5000
