@@ -33,16 +33,19 @@ class Create::Musicians
 
   def read_file(input)
     file = YAML.load_file("#{Rails.root}/#{input[:file_name]}")
+    pp "file read"
 
     Success input.merge(file: file)
   end
 
   def authenticate(input)
+    pp "authenticated"
     RSpotify::authenticate(input[:client], input[:token])
   end
 
   def create_artist(input)
     artists_names = input[:file].symbolize_keys[:artists].compact
+    pp "creating: #{artists_names}"
 
     artists_names.each do |artist_name|
       Create::Musician.new.(artist_name: artist_name)
